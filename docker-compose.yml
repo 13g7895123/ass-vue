@@ -1,0 +1,14 @@
+version: "3.4"
+services:
+ ass-vue:
+   image: node:alpine
+   container_name: ass-vue
+   entrypoint: /bin/sh
+   ports:
+     - 9052:8000
+   working_dir: /srv/app
+   volumes:
+     - type: bind
+       source: ./vue-app
+       target: /srv/app
+   tty: true
