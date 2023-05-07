@@ -1,16 +1,33 @@
 <template>
-  <EasyDataTable
-    :headers="headers"
-    :items="dataArray"
-  />
-    <!-- <DataTable class="display">
-      <thead>
-          <tr>
-              <th>First</th>
-              <th>Second</th>
-          </tr>
-      </thead>
-  </DataTable> -->
+  <!-- <Toolbar class="mb-4">
+    <template #start>
+        <Button label="New" icon="pi pi-plus" severity="success" class="mr-2" @click="openNew" />
+        <Button label="Delete" icon="pi pi-trash" severity="danger" @click="confirmDeleteSelected" :disabled="!selectedProducts || !selectedProducts.length" />
+    </template>
+    <template #end>
+        <FileUpload mode="basic" accept="image/*" :maxFileSize="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block" />
+        <Button label="Export" icon="pi pi-upload" severity="help" @click="exportCSV($event)"  />
+    </template>
+  </Toolbar> -->
+  <!-- DataTable -->
+  <div class="card">
+      <DataTable 
+        :value="products" 
+        showGridlines 
+        paginator 
+        :rows="5" 
+        :rowsPerPageOptions="[5, 10, 20, 50]" 
+        selectionMode="single" 
+        
+        >
+        <Column 
+          v-for="col of headers" 
+          :key="col.field" 
+          :field="col.field" 
+          :header="col.header">
+        </Column>
+      </DataTable>
+  </div>
 </template>
 
 <script setup>
@@ -27,24 +44,19 @@ fetchAllTasks()
 const dataArray = toRaw(tasks)
 
 const headers = ref([
-  { text: "名稱", value: "name" },
-  { text: "種類", value: "cate"},
-  { text: "狀態", value: "status"},
-  { text: "金額", value: "amount"},
-  { text: "開始聯繫日期", value: "start_contact_date"},
-  { text: "開始執行日期", value: "start_implement_date", sortable: true},
-  { text: "完成日期", value: "finished_date"},
-  { text: "最後更新日期", value: "last_update_date"},
-  { text: "收到款項日期", value: "receive_payment_date"},
-  { text: "TAG", value: "tag"},
-  { text: "備註", value: "remark"},
+  { header: "名稱", field: "name" },
+  { header: "種類", field: "cate"},
+  { header: "狀態", field: "status"},
+  { header: "金額", field: "amount"},
+  { header: "開始聯繫日期", field: "start_contact_date"},
+  { header: "開始執行日期", field: "start_implement_date"},
+  { header: "完成日期", field: "finished_date"},
+  { header: "最後更新日期", field: "last_update_date"},
+  { header: "收到款項日期", field: "receive_payment_date"},
+  { header: "TAG", field: "tag"},
+  { header: "備註", field: "remark"},
 ])
-const items = dataArray
-// const items = ref([
-//   { player: "Stephen Curry", team: "GSW", number: 30, position: 'G', indicator: {"height": '6-2', "weight": 185}, lastAttended: "Davidson", country: "USA"},
-//   { player: "Lebron James", team: "LAL", number: 6, position: 'F', indicator: {"height": '6-9', "weight": 250}, lastAttended: "St. Vincent-St. Mary HS (OH)", country: "USA"},
-//   { player: "Kevin Durant", team: "BKN", number: 7, position: 'F', indicator: {"height": '6-10', "weight": 240}, lastAttended: "Texas-Austin", country: "USA"},
-//   { player: "Giannis Antetokounmpo", team: "MIL", number: 34, position: 'F', indicator: {"height": '6-11', "weight": 242}, lastAttended: "Filathlitikos", country: "Greece"},
-// ])
+
+const products = dataArray;
 
 </script>
