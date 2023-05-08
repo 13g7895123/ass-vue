@@ -34,6 +34,7 @@
                     class="text-xl w-full py-2 pl-3 flex items-center rounded text-purple-900 hover:bg-purple-300 cursor-pointer">
                     <div class="pi pi-check-circle" style="font-size: 1.5rem"></div>
                     <label class="ml-3">Test</label>
+                    <div class="ml-3" :class="showIconClass" style="font-size: 1rem" @click="showTestItems"></div>
                 </router-link>
                 <ul v-show="showTest">
                     <li class="w-full flex items-center justify-center cursor-pointer py-1 rounded hover:bg-purple-300">
@@ -56,10 +57,16 @@ import { ref } from 'vue';
 const showTask = ref(false)
 const showIcon = ref(false)
 const showIconClass = ref('')
+const showTest = ref(false)
 
 showIconClass.value = showIcon.value ? 'pi pi-angle-up' : 'pi pi-angle-down'
 const showTaskItems = () => {
     showTask.value = !showTask.value
+    showIcon.value = !showIcon.value
+    showIconClass.value = showIcon.value ? 'pi pi-angle-up' : 'pi pi-angle-down'
+}
+const showTestItems = () => {
+    showTest.value = !showTest.value
     showIcon.value = !showIcon.value
     showIconClass.value = showIcon.value ? 'pi pi-angle-up' : 'pi pi-angle-down'
 }
