@@ -7,7 +7,7 @@
         <div 
             class="px-5 py-3 ml-1 bg-green-300 text-xl font-extrabold rounded-md cursor-pointer hover:bg-green-500"
             @click="submit">
-            Click
+            Click123
         </div>
     </div>
 </template>
