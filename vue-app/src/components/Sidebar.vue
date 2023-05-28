@@ -28,7 +28,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="flex flex-col justify-center">
+            <li class="flex flex-col justify-center mt-2">
                 <router-link 
                     :to="{ name: 'test' }"
                     class="text-xl w-full py-2 pl-3 flex items-center rounded text-purple-900 hover:bg-purple-300 cursor-pointer">

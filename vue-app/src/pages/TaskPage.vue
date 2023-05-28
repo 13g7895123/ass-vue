@@ -13,12 +13,14 @@
   <div class="card">
       <DataTable 
         :value="products" 
-        showGridlines 
         paginator 
         :rows="5" 
         :rowsPerPageOptions="[5, 10, 20, 50]" 
         selectionMode="single" 
-        
+        editMode="row"
+        :editingRows="editingRows"
+        @row-edit-save="onRowEditSave"
+        tableClass="editable-cells-table"
         >
         <Column 
           v-for="col of headers" 
@@ -58,5 +60,12 @@ const headers = ref([
 ])
 
 const products = dataArray;
+
+const editingRows = ref([]);
+const onRowEditSave = (event) => {
+    let { newData, index } = event;
+
+    products.value[index] = newData;
+};
 
 </script>

@@ -31,13 +31,13 @@ import { ref, toRaw } from 'vue'
 import axios from 'axios' 
 
 const name = ref('')
-const selectedCity = ref('')
 const amount = ref(0)
 const date = ref('')
 const cities = ref([
     { name: 'Web', code: 'web' },
     { name: 'Python', code: 'python' }
 ]);
+const selectedCity = ref('')
 const onSubmit = async() => {
 
     let params = new URLSearchParams()
@@ -47,7 +47,9 @@ const onSubmit = async() => {
     params.append('date', date.value.toLocaleDateString())
 
     axios.post('http://139.162.15.125/api_php/assistant/addTask.php', params)
-    .then( (response) => console.log(response))
+    .then( response => {
+        console.log(response)
+    })
     .catch( (error) => console.log(error))
 }   
 </script>
